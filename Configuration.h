@@ -71,7 +71,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Ender-5)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Sean Olson)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -86,7 +86,7 @@
  */
 
 // Show the Marlin bootscreen on startup. ** ENABLE FOR PRODUCTION **
-//#define SHOW_BOOTSCREEN
+#define SHOW_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Bootscreen.h on startup.
 //#define SHOW_CUSTOM_BOOTSCREEN
@@ -123,7 +123,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -330,9 +330,9 @@
   //#define PSU_DEFAULT_OFF         // Keep power off until enabled directly with M80
   //#define PSU_POWERUP_DELAY 100   // (ms) Delay for the PSU to warm up to full power
 
-  //#define AUTO_POWER_CONTROL  // Enable automatic control of the PS_ON pin
+  //#define AUTO_POWER_CONTROL      // Enable automatic control of the PS_ON pin
   #if ENABLED(AUTO_POWER_CONTROL)
-    #define AUTO_POWER_FANS           // Turn on PSU if fans need power
+    #define AUTO_POWER_FANS         // Turn on PSU if fans need power
     #define AUTO_POWER_E_FANS
     #define AUTO_POWER_CONTROLLERFAN
     #define AUTO_POWER_CHAMBER_FAN
@@ -463,8 +463,8 @@
 #define PID_MAX BANG_MAX // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 #if ENABLED(PIDTEMP)
-  //define PID_EDIT_MENU           // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
-  //define PID_AUTOTUNE_MENU       // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
+  //#define PID_EDIT_MENU         // Add PID editing to the "Advanced Settings" menu. (~700 bytes of PROGMEM)
+  //#define PID_AUTOTUNE_MENU     // Add PID auto-tuning to the "Advanced Settings" menu. (~250 bytes of PROGMEM)
   //#define PID_DEBUG             // Sends debug data to the serial port.
   //#define PID_OPENLOOP 1        // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
   //#define SLOW_PWM_HEATERS      // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
@@ -474,6 +474,7 @@
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
+
   // Creality Ender-5
   #define DEFAULT_Kp 20.84
   #define DEFAULT_Ki 1.96
@@ -791,7 +792,7 @@
  *   http://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
 #if DISABLED(CLASSIC_JERK)
-  #define JUNCTION_DEVIATION_MM 0.08  // (mm) Distance from real junction edge
+  #define JUNCTION_DEVIATION_MM 0.013 // (mm) Distance from real junction edge
 #endif
 
 /**
@@ -931,13 +932,13 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { 0, 0, 0 }
+#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
 
 // Certain types of probes need to stay away from edges
 #define MIN_PROBE_EDGE 10
 
 // X and Y axis travel speed (mm/m) between probes
-#define XY_PROBE_SPEED 3000
+#define XY_PROBE_SPEED 8000
 
 // Feedrate (mm/m) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_SPEED_FAST HOMING_FEEDRATE_Z
@@ -1025,7 +1026,7 @@
 // @section extruder
 
 #define DISABLE_E false             // For all extruders
-#define DISABLE_INACTIVE_EXTRUDER true // Keep only the active extruder enabled
+#define DISABLE_INACTIVE_EXTRUDER   // Keep only the active extruder enabled
 
 // @section machine
 
@@ -1062,8 +1063,8 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 230
-#define Y_BED_SIZE 225
+#define X_BED_SIZE 220
+#define Y_BED_SIZE 220
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1071,7 +1072,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
-#define Z_MAX_POS 305
+#define Z_MAX_POS 300
 
 /**
  * Software Endstops
@@ -1411,7 +1412,7 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-#define EEPROM_SETTINGS       // Persistent storage with M500 and M501
+#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
 //#define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #if ENABLED(EEPROM_SETTINGS)
@@ -1449,12 +1450,12 @@
 #define PREHEAT_1_LABEL       "PLA"
 #define PREHEAT_1_TEMP_HOTEND 185
 #define PREHEAT_1_TEMP_BED     45
-#define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255
+#define PREHEAT_1_FAN_SPEED     255 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "ABS"
 #define PREHEAT_2_TEMP_HOTEND 240
-#define PREHEAT_2_TEMP_BED     70
-#define PREHEAT_2_FAN_SPEED   255 // Value from 0 to 255
+#define PREHEAT_2_TEMP_BED    70
+#define PREHEAT_2_FAN_SPEED     255 // Value from 0 to 255
 
 /**
  * Nozzle Park
@@ -1471,7 +1472,7 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { X_MIN_POS, Y_MIN_POS, Z_MAX_POS }
+  #define NOZZLE_PARK_POINT { X_MIN_POS, Y_MIN_POS, 0 }
   #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
   #define NOZZLE_PARK_Z_FEEDRATE 5      // (mm/s) Z axis feedrate (not used for delta printers)
 #endif

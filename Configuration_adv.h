@@ -626,7 +626,7 @@
    * differs, a mode set eeprom write will be completed at initialization.
    * Use the option below to force an eeprom write to a V3.1 probe regardless.
    */
-  #define BLTOUCH_SET_5V_MODE
+  //#define BLTOUCH_SET_5V_MODE
 
   /**
    * Safety: Activate if connecting a probe with an unknown voltage mode.
@@ -903,7 +903,7 @@
 #define ENCODER_RATE_MULTIPLIER
 #if ENABLED(ENCODER_RATE_MULTIPLIER)
   #define ENCODER_10X_STEPS_PER_SEC   75  // (steps/s) Encoder rate for 10x speed
-  #define ENCODER_100X_STEPS_PER_SEC  160 // (steps/s) Encoder rate for 100x speed
+  #define ENCODER_100X_STEPS_PER_SEC  160  // (steps/s) Encoder rate for 100x speed
 #endif
 
 // Play a beep when the feedrate is changed from the Status Screen
@@ -922,7 +922,7 @@
   #endif
 
   // BACK menu items keep the highlight at the top
-  //#define TURBO_BACK_MENU_ITEM
+  #define TURBO_BACK_MENU_ITEM
 
   /**
    * LED Control Menu
@@ -994,7 +994,7 @@
   // Since the FAT gets out of order with usage, SDCARD_SORT_ALPHA is recommended.
   #define SDCARD_RATHERRECENTFIRST
 
-  //#define SD_MENU_CONFIRM_START           // Confirm the selected SD file before printing
+  //#define SD_MENU_CONFIRM_START             // Confirm the selected SD file before printing
 
   //#define MENU_ADDAUTOSTART               // Add a menu option to run auto#.g files
 
@@ -1371,8 +1371,8 @@
   //#define BABYSTEP_WITHOUT_HOMING
   //#define BABYSTEP_XY                     // Also enable X/Y Babystepping. Not supported on DELTA!
   #define BABYSTEP_INVERT_Z false           // Change if Z babysteps should go the other way
-  #define BABYSTEP_MULTIPLICATOR_Z  40      // Babysteps are very small. Increase for faster motion.
-  #define BABYSTEP_MULTIPLICATOR_XY 40
+  #define BABYSTEP_MULTIPLICATOR_Z  40       // Babysteps are very small. Increase for faster motion.
+  #define BABYSTEP_MULTIPLICATOR_XY 1
 
   //#define DOUBLECLICK_FOR_Z_BABYSTEPPING  // Double-click on the Status Screen for Z Babystepping.
   #if ENABLED(DOUBLECLICK_FOR_Z_BABYSTEPPING)
@@ -1488,7 +1488,7 @@
 //
 // G2/G3 Arc Support
 //
-//#define ARC_SUPPORT             // Disable this feature to save ~3226 bytes
+//#define ARC_SUPPORT               // Disable this feature to save ~3226 bytes
 #if ENABLED(ARC_SUPPORT)
   #define MM_PER_ARC_SEGMENT  1   // Length of each arc segment
   #define MIN_ARC_SEGMENTS   24   // Minimum number of segments in a complete circle
@@ -1722,7 +1722,7 @@
  * Requires NOZZLE_PARK_FEATURE.
  * This feature is required for the default FILAMENT_RUNOUT_SCRIPT.
  */
-#define ADVANCED_PAUSE_FEATURE
+//#define ADVANCED_PAUSE_FEATURE
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
   #define PAUSE_PARK_RETRACT_FEEDRATE         60  // (mm/s) Initial retract feedrate.
   #define PAUSE_PARK_RETRACT_LENGTH            2  // (mm) Initial retract.
@@ -1756,7 +1756,7 @@
   #define FILAMENT_UNLOAD_PURGE_LENGTH         8  // (mm) An unretract is done, then this length is purged.
 
   #define PAUSE_PARK_NOZZLE_TIMEOUT           45  // (seconds) Time limit before the nozzle is turned off for safety.
-  #define FILAMENT_CHANGE_ALERT_BEEPS         5   // Number of alert beeps to play when a response is needed.
+  #define FILAMENT_CHANGE_ALERT_BEEPS         10  // Number of alert beeps to play when a response is needed.
   #define PAUSE_PARK_NO_STEPPER_TIMEOUT           // Enable for XYZ steppers to stay powered on during filament change.
 
   //#define PARK_HEAD_ON_PAUSE                    // Park the nozzle during pause and filament change.
